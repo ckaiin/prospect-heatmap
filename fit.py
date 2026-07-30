@@ -29,29 +29,40 @@ def _tok(cuisine):
     c = (cuisine or "").lower().replace(";", ",")
     return [t.strip().replace(" ", "_") for t in c.split(",") if t.strip()]
 
-# Cuisine tiers (tokens use underscores; matched loosely).
+# Cuisine tiers (tokens use underscores; matched loosely). Chefs' Warehouse targets
+# WIDE (WORK-PORTFOLIO.md §6): fast-casual is the biggest growth segment and the net
+# includes casual spots, not just white-tablecloth. So casual food-prep operations
+# score as real prospects; only beverage/sweet counters sit low.
+
+# Chef-driven / specialty ceiling (fine dining, plus pastry — an underserved CW sweet spot).
 HIGH = {"french", "italian", "japanese", "sushi", "seafood", "steak",
         "steak_house", "steakhouse", "mediterranean", "greek", "spanish",
         "contemporary", "american", "ramen", "izakaya", "tapas", "oyster",
         "modern_european", "fine_dining", "basque", "raw", "fusion", "asian",
-        "peruvian", "argentinian", "brazilian", "portuguese"}
+        "peruvian", "argentinian", "brazilian", "portuguese", "pastry",
+        "patisserie", "chocolate", "dessert"}
+# Ethnic full-service — solid, buys proteins/oils/specialty.
 MED = {"thai", "indian", "chinese", "mexican", "korean", "latin_american",
        "turkish", "vietnamese", "caribbean", "moroccan", "lebanese",
        "ethiopian", "cuban", "middle_eastern", "filipino", "malaysian"}
-LOW = {"pizza", "burger", "tacos", "taco", "wings", "bagel", "sandwich",
-       "donut", "doughnut", "coffee_shop", "coffee", "fast_food",
-       "fried_chicken", "hot_dog", "deli", "ice_cream", "bubble_tea", "juice",
-       "smoothie", "breakfast", "diner", "wrap", "salad", "frozen_yogurt"}
+# Fast-casual / casual food prep — the growth segment. Still buys real product
+# (a pizzeria = tomatoes/flour/cheese/oil; a taqueria = proteins/oil). Kept positive.
+CASUAL = {"pizza", "burger", "tacos", "taco", "sandwich", "deli", "diner",
+          "bbq", "barbecue", "wings", "fried_chicken", "wrap", "cheesesteak",
+          "sub", "comfort_food", "hot_dog", "breakfast", "brunch", "salad"}
+# Beverage / sweet counters — a specialty food distributor sells little here.
+LOW = {"coffee_shop", "coffee", "bagel", "donut", "doughnut", "juice",
+       "smoothie", "ice_cream", "bubble_tea", "frozen_yogurt", "tea", "boba"}
 
 # Name signals.
 NAME_UP = ("bistro", "trattoria", "osteria", "brasserie", "ristorante", "tavern",
            "chophouse", "steakhouse", "steak house", "oyster", "wine bar",
-           "gastropub", "kitchen", "table", "cellar", "brewpub", "supper")
-NAME_DOWN = ("pizzeria", "pizza", "deli", "diner", "bagel", "donut", "doughnut",
-             "wings", "express", "taqueria", "halal", "grill express",
-             "food truck", "creamery", "frozen", "smoothie", "juice")
+           "gastropub", "kitchen", "table", "cellar", "brewpub", "supper",
+           "patisserie", "chocolat")
+NAME_DOWN = ("bagel", "donut", "doughnut", "juice bar", "smoothie", "creamery",
+             "ice cream", "frozen yogurt", "coffee roast")
 
-BASE = {"Restaurant": 62, "Bar": 55, "Bakery": 52, "Cafe": 34}
+BASE = {"Restaurant": 60, "Bar": 55, "Bakery": 60, "Cafe": 44}
 
 def is_chain(name):
     n = (name or "").lower()
@@ -63,14 +74,16 @@ def score_fit(name, category, cuisine):
     score = BASE.get(category, 55)
     toks = _tok(cuisine)
     if any(t in HIGH for t in toks):
-        score += 25
+        score += 22
     elif any(t in MED for t in toks):
-        score += 10
+        score += 12
+    elif any(t in CASUAL for t in toks):
+        score += 4
     if any(t in LOW for t in toks):
-        score -= 22
+        score -= 16
     n = (name or "").lower()
     if any(w in n for w in NAME_UP):
-        score += 12
+        score += 10
     if any(w in n for w in NAME_DOWN):
-        score -= 12
-    return max(5, min(98, score)), False
+        score -= 10
+    return max(30, min(98, score)), False
