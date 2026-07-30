@@ -260,8 +260,8 @@
     if (b.summary) h += `<div class="brief-sum">${b.summary}</div>`;
     if (b.style) h += `<div><b>Style:</b> ${b.style}</div>`;
     if (b.menu) h += `<div><b>Menu:</b> ${b.menu}</div>`;
-    if (b.bestSellers && b.bestSellers.length) h += `<div><b>Likely best-sellers:</b> ${b.bestSellers.join(", ")}</div>`;
-    if (b.angle) h += `<div><b>CW angle:</b> ${b.angle}</div>`;
+    if (b.cwSellers && b.cwSellers.length) h += `<div><b>Top products to sell them:</b> ${b.cwSellers.join(", ")}</div>`;
+    if (b.angle) h += `<div><b>Pitch angle:</b> ${b.angle}</div>`;
     if (b.sources && b.sources.length) {
       h += `<div class="brief-src"><b>Sources:</b>` +
         b.sources.map(s => `<div>· <a href="${s.url}" target="_blank" rel="noopener">${s.label}</a> <span class="brief-cred">${s.cred}/10</span></div>`).join("") +
