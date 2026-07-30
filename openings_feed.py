@@ -11,6 +11,7 @@ Re-run any time to refresh: python3 openings_feed.py
 """
 import sys, json, time, hashlib, subprocess, urllib.request, urllib.parse
 from datetime import datetime, timedelta
+from fit import score_fit
 
 COUNTY = "Westchester"
 SLA_PENDING_URL = ("https://data.ny.gov/resource/f8i8-k2gm.json"
@@ -106,19 +107,24 @@ for idx, r in enumerate(prospects):
         continue
 
     raw_name = (r.get("dba") or r.get("legalname") or addr).strip()
+    name = nice_name(raw_name) if not r.get("dba") else raw_name
     appid = r.get("application_id", "")
     received = (r.get("received_date") or "")[:10]
     status = r.get("status", "")
 
+    fit_score, chain = score_fit(name, "Restaurant", "")
+    if chain:
+        continue  # skip commodity chains
+
     out.append({
         "id": "sla-" + appid,
-        "name": nice_name(raw_name) if not r.get("dba") else raw_name,
+        "name": name,
         "category": "Restaurant",
         "cuisine": "",
         "street": f"{addr}, {city}",
         "lat": round(coords[0], 6),
         "lng": round(coords[1], 6),
-        "fitScore": int(45 + det(appid, "fit") * 55),        # estimate placeholder
+        "fitScore": fit_score,
         "monthlyValue": int(det(appid, "val") * 2800),        # estimate placeholder
         "status": "new",
         "opening": {
@@ -157,15 +163,19 @@ for r in active:
     issued = (r.get("originalissuedate") or "")[:10]
     addr = (r.get("actualaddressofpremises") or "").strip().title()
     city = (r.get("city") or "").strip().title()
+    aname = nice_name(r.get("legalname"))
+    fit_score, chain = score_fit(aname, "Restaurant", "")
+    if chain:
+        continue  # skip commodity chains
     out.append({
         "id": "sla-active-" + lic,
-        "name": nice_name(r.get("legalname")),
+        "name": aname,
         "category": "Restaurant",
         "cuisine": "",
         "street": f"{addr}, {city}",
         "lat": round(lat, 6),
         "lng": round(lng, 6),
-        "fitScore": int(45 + det(lic, "fit") * 55),
+        "fitScore": fit_score,
         "monthlyValue": int(det(lic, "val") * 2800),
         "status": "new",
         "opening": {

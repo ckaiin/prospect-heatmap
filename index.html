@@ -113,7 +113,7 @@
   <div class="panel" id="panel">
     <button class="collapse-btn" id="collapseBtn" title="Collapse">–</button>
     <h1>Prospect Heat Map</h1>
-    <div class="sub" id="dataSub">Real Westchester venues · fit/$/status are placeholders</div>
+    <div class="sub" id="dataSub">Real venues · Chefs' Warehouse fit score · chains removed</div>
 
     <div class="group">
       <div class="label">Heat represents</div>
@@ -128,6 +128,11 @@
     <div class="group">
       <div class="label">Status</div>
       <div class="chips" id="statusChips"></div>
+    </div>
+
+    <div class="group">
+      <div class="label">Min fit score: <span id="minFitVal">0</span></div>
+      <input type="range" id="minFitSlider" min="0" max="98" value="0" step="1" style="width:100%; accent-color: var(--accent);" />
     </div>
 
     <div class="group">
@@ -240,6 +245,7 @@
     statuses: new Set(STATUSES),
     showPins: true,
     newOnly: false,
+    minFit: 0,
   };
 
   const STATUS_COLOR = { new: "#ff7a45", contacted: "#ffd93b", customer: "#37d67a", "not-interested": "#7a8290" };
@@ -274,6 +280,11 @@
 
   document.getElementById("pinsToggle").onchange = e => { state.showPins = e.target.checked; render(); };
   document.getElementById("newOnlyToggle").onchange = e => { state.newOnly = e.target.checked; render(); };
+  document.getElementById("minFitSlider").oninput = e => {
+    state.minFit = +e.target.value;
+    document.getElementById("minFitVal").textContent = state.minFit;
+    render();
+  };
   document.getElementById("collapseBtn").onclick = () => document.getElementById("panel").classList.toggle("collapsed");
 
   function toggleSet(set, v) { set.has(v) ? set.delete(v) : set.add(v); }
@@ -285,6 +296,7 @@
     return PROSPECTS.filter(p =>
       state.cats.has(p.category) &&
       state.statuses.has(p.status) &&
+      p.fitScore >= state.minFit &&
       (!state.newOnly || p.opening)
     );
   }

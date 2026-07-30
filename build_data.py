@@ -7,6 +7,7 @@ fitScore + monthlyValue (rough estimates so the heat modes demo), opening (mock)
 Deterministic: same input -> same output, so the map is stable across reloads.
 """
 import json, hashlib, re
+from fit import score_fit
 
 RAW = "overpass_raw.json"
 OUT = "restaurants.js"
@@ -31,6 +32,7 @@ def titlecase_cuisine(c):
 
 data = json.load(open(RAW))["elements"]
 out = []
+chains_dropped = 0
 for el in data:
     tags = el.get("tags", {})
     name = tags.get("name")
@@ -44,20 +46,24 @@ for el in data:
         category = CAT.get(tags.get("amenity"), "Restaurant")
 
     sid = str(el["id"])
-    r_fit = det(sid, "fit")
-    r_val = det(sid, "val")
+    cuisine = titlecase_cuisine(tags.get("cuisine", ""))
+
+    # Real Chefs' Warehouse fit score; drop commodity chains entirely.
+    fit_score, chain = score_fit(name, category, tags.get("cuisine", ""))
+    if chain:
+        chains_dropped += 1
+        continue
 
     out.append({
         "id": el["id"],
         "name": name,
         "category": category,
-        "cuisine": titlecase_cuisine(tags.get("cuisine", "")),
+        "cuisine": cuisine,
         "street": tags.get("addr:street", ""),
         "lat": round(el["lat"], 6),
         "lng": round(el["lon"], 6),
-        # placeholders below
-        "fitScore": int(35 + r_fit * 65),                 # 35-100 estimate
-        "monthlyValue": int(r_val * r_val * 2800),         # $ potential, skewed low
+        "fitScore": fit_score,                             # real CW fit heuristic
+        "monthlyValue": int(det(sid, "val") ** 2 * 2800),  # $ potential estimate
         "status": "new",                                   # nothing prospected yet
         "opening": None,
     })
@@ -77,5 +83,5 @@ with open(OUT, "w") as f:
     json.dump(out, f, ensure_ascii=False)
     f.write(";\n")
 
-print(f"wrote {len(out)} venues -> {OUT}")
+print(f"wrote {len(out)} venues -> {OUT}  (dropped {chains_dropped} chains)")
 print("by category:", cats)
