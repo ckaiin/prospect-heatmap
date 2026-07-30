@@ -182,7 +182,7 @@
 
   const MODES = {
     density:  { label: "Density",       weight: () => 1,                                              hint: ["few", "many"] },
-    fit:      { label: "Fit score",     weight: p => 0.08 + 0.92 * Math.pow(norm(p.fitScore, FIT_MIN, FIT_MAX), 1.5), hint: ["poor fit", "great fit"] },
+    fit:      { label: "Fit score",     weight: p => 0.02 + 0.98 * Math.pow(norm(p.fitScore, FIT_MIN, FIT_MAX), 3), hint: ["poor fit", "great fit"] },
     pipeline: { label: "Pipeline $",    weight: p => 0.06 + 0.94 * norm(p.monthlyValue, 0, VAL_MAX),  hint: ["low $", "high $"] },
     coverage: { label: "Coverage gaps", weight: p => (p.status === "new" ? 1 : p.status === "contacted" ? 0.35 : 0.05), hint: ["worked", "untapped"] },
   };
