@@ -175,11 +175,16 @@
   //  HEAT MODES — each turns a prospect into a 0..1 weight.
   //  Add or edit modes freely.
   // ============================================================
+  // Ranges filled in once PROSPECTS is built, so fit/pipeline stretch across the
+  // full 0..1 heat range (otherwise dense point-count swamps the weighting).
+  let FIT_MIN = 30, FIT_MAX = 98, VAL_MAX = 1;
+  const norm = (v, lo, hi) => (hi > lo ? (v - lo) / (hi - lo) : 0.5);
+
   const MODES = {
-    density:  { label: "Density",       weight: () => 1,                                    hint: ["few", "many"] },
-    fit:      { label: "Fit score",     weight: p => p.fitScore / 100,                      hint: ["poor fit", "great fit"] },
-    pipeline: { label: "Pipeline $",    weight: p => Math.min(p.monthlyValue / 3000, 1),    hint: ["low $", "high $"] },
-    coverage: { label: "Coverage gaps", weight: p => (p.status === "new" ? 1 : p.status === "contacted" ? 0.4 : 0.05), hint: ["worked", "untapped"] },
+    density:  { label: "Density",       weight: () => 1,                                              hint: ["few", "many"] },
+    fit:      { label: "Fit score",     weight: p => 0.08 + 0.92 * Math.pow(norm(p.fitScore, FIT_MIN, FIT_MAX), 1.5), hint: ["poor fit", "great fit"] },
+    pipeline: { label: "Pipeline $",    weight: p => 0.06 + 0.94 * norm(p.monthlyValue, 0, VAL_MAX),  hint: ["low $", "high $"] },
+    coverage: { label: "Coverage gaps", weight: p => (p.status === "new" ? 1 : p.status === "contacted" ? 0.35 : 0.05), hint: ["worked", "untapped"] },
   };
 
   // ============================================================
@@ -192,6 +197,13 @@
   // Existing venues (OSM) + real new openings (NY SLA pending licenses).
   const PROSPECTS = (window.REAL_RESTAURANTS || []).slice()
     .concat(window.REAL_OPENINGS || []);
+
+  // Fill in the metric ranges used by the fit/pipeline heat modes.
+  if (PROSPECTS.length) {
+    FIT_MIN = Math.min(...PROSPECTS.map(p => p.fitScore));
+    FIT_MAX = Math.max(...PROSPECTS.map(p => p.fitScore));
+    VAL_MAX = Math.max(...PROSPECTS.map(p => p.monthlyValue)) || 1;
+  }
 
   // ---- Visit tracker: saved on this device (localStorage) ----
   const STORE_KEY = "prospectTracker.v1";
@@ -341,7 +353,7 @@
     const points = shown.map(p => [p.lat, p.lng, Math.max(mode.weight(p), 0.05)]);
     if (heatLayer) map.removeLayer(heatLayer);
     heatLayer = L.heatLayer(points, {
-      radius: 28, blur: 22, maxZoom: 17, minOpacity: 0.35,
+      radius: 22, blur: 17, maxZoom: 17, minOpacity: 0.3, max: 4.5,
       gradient: { 0.0: "#2b6bff", 0.35: "#37d67a", 0.6: "#ffd93b", 0.8: "#ff7a45", 1.0: "#ff2d2d" },
     }).addTo(map);
 
