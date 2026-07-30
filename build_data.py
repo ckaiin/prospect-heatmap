@@ -60,6 +60,7 @@ for el in data:
         "category": category,
         "cuisine": cuisine,
         "street": tags.get("addr:street", ""),
+        "hours": tags.get("opening_hours", ""),            # OSM opening_hours (may be "")
         "lat": round(el["lat"], 6),
         "lng": round(el["lon"], 6),
         "fitScore": fit_score,                             # real CW fit heuristic
