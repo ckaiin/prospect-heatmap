@@ -70,6 +70,8 @@
     .chip.on { color: var(--panel-fg); border-color: var(--accent); background: rgba(255,122,69,.14); }
 
     .stat { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; margin-top: 4px; }
+    .stat-warn { color: #ffb020; cursor: pointer; }
+    .stat-warn:hover { text-decoration: underline; }
     .stat b { color: var(--panel-fg); }
 
     .toggle-pins { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--panel-fg); cursor: pointer; }
@@ -89,7 +91,8 @@
     .pv-btn.sel { background: #111; color: #fff; border-color: #111; font-weight: 600; }
     .pv-note { width: 100%; min-height: 40px; font-size: 12px; border: 1px solid #ccc; border-radius: 6px; padding: 5px; resize: vertical; font-family: inherit; box-sizing: border-box; }
     .brief { margin: 7px 0; padding: 7px 8px; background: #fbf4ee; border: 1px solid #f0dccb; border-radius: 7px; font-size: 12px; line-height: 1.4; max-height: 200px; overflow-y: auto; }
-    .brief-empty { color: #777; background: #f5f5f5; border-color: #e5e5e5; }
+    .brief-empty { color: #6b4a00; background: #fff6e0; border-color: #ffd489; }
+    .brief-empty code { background: rgba(0,0,0,.06); padding: 0 3px; border-radius: 3px; }
     .brief-h { font-weight: 700; color: #b0561f; margin-bottom: 3px; }
     .brief-sum { margin-bottom: 4px; }
     .brief-spec { color: #999; font-weight: 400; font-style: italic; }
@@ -170,6 +173,7 @@
     <div class="group">
       <label class="toggle-pins"><input type="checkbox" id="pinsToggle" checked /> Show pins</label>
       <label class="toggle-pins" style="margin-top:8px"><input type="checkbox" id="newOnlyToggle" /> 🆕 New openings only</label>
+      <label class="toggle-pins" style="margin-top:8px"><input type="checkbox" id="needsBriefToggle" /> ⚠️ Needs research only</label>
     </div>
 
     <div class="stat" id="stat"></div>
@@ -177,6 +181,7 @@
     <div class="legend">
       <div class="bar"></div>
       <div class="ends"><span id="legLo">cold</span><span id="legHi">hot</span></div>
+      <div style="margin-top:6px">⚪ new opening · <span style="color:#ffb020">◯ amber ring = needs research</span></div>
     </div>
   </div>
 
@@ -299,10 +304,13 @@
     return null;
   }
 
+  // An opening with no briefing is a research to-do, surfaced in the UI.
+  function needsBriefing(p) { return !!p.opening && !findBriefing(p); }
+
   // Build the researched-briefing block for an opening popup (or a placeholder).
   function briefingHtml(p) {
     const hit = findBriefing(p);
-    if (!hit) return `<div class="brief brief-empty">🔎 No briefing yet — no public info found for this pre-opening spot.</div>`;
+    if (!hit) return `<div class="brief brief-empty">⚠️ <b>Needs research</b> — no briefing for this one yet. Research it, then add it to <code>.briefsrc/</code> and rerun <code>build_briefings.py</code>.</div>`;
     const b = hit.b;
     const conf = b.confidence != null ? b.confidence : "?";
     const spec = b.speculative ? ` <span class="brief-spec">(informed guess)</span>` : "";
@@ -367,6 +375,7 @@
     statuses: new Set(STATUSES),
     showPins: true,
     newOnly: false,
+    needsBrief: false,
     minFit: 0,
     openNow: "all",
   };
@@ -403,6 +412,7 @@
 
   document.getElementById("pinsToggle").onchange = e => { state.showPins = e.target.checked; render(); };
   document.getElementById("newOnlyToggle").onchange = e => { state.newOnly = e.target.checked; render(); };
+  document.getElementById("needsBriefToggle").onchange = e => { state.needsBrief = e.target.checked; render(); };
   document.getElementById("minFitSlider").oninput = e => {
     state.minFit = +e.target.value;
     document.getElementById("minFitVal").textContent = state.minFit;
@@ -429,6 +439,7 @@
       if (!state.statuses.has(p.status)) return false;
       if (p.fitScore < state.minFit) return false;
       if (state.newOnly && !p.opening) return false;
+      if (state.needsBrief && !needsBriefing(p)) return false;
       if (state.openNow !== "all") {
         const st = isOpenNow(p.hours);       // true / false / null(unknown)
         if (state.openNow === "open" && st !== true) return false;
@@ -486,8 +497,11 @@
               radius: 6, color: "#ffffff", weight: 2, fill: false, className: "opening-pulse", interactive: false,
             }).addTo(markerLayer);
           }
+          // Unbriefed openings get an amber ring — a visible "research me".
+          const bare = needsBriefing(p);
           marker = L.circleMarker([p.lat, p.lng], {
-            radius: 6, color: openStroke, weight: 1.5, fillColor: openFill, fillOpacity: 1,
+            radius: 6, color: bare ? "#ffb020" : openStroke, weight: bare ? 3 : 1.5,
+            fillColor: openFill, fillOpacity: 1,
           });
         } else {
           marker = L.circleMarker([p.lat, p.lng], {
@@ -502,9 +516,16 @@
     const totalVal = shown.reduce((a, p) => a + p.monthlyValue, 0);
     const contacted = PROSPECTS.filter(p => p.status === "contacted").length;
     const customers = PROSPECTS.filter(p => p.status === "customer").length;
+    const unbriefed = PROSPECTS.filter(needsBriefing).length;
     document.getElementById("stat").innerHTML =
       `<b>${shown.length}</b> shown · <b>$${totalVal.toLocaleString()}</b>/mo potential<br>` +
-      `<b>${contacted}</b> contacted · <b>${customers}</b> customers`;
+      `<b>${contacted}</b> contacted · <b>${customers}</b> customers` +
+      (unbriefed ? `<br><span class="stat-warn" id="statWarn">⚠️ <b>${unbriefed}</b> opening${unbriefed === 1 ? "" : "s"} need research</span>` : "");
+    const warn = document.getElementById("statWarn");
+    if (warn) warn.onclick = () => {                      // jump straight to them
+      const cb = document.getElementById("needsBriefToggle");
+      cb.checked = true; state.needsBrief = true; render();
+    };
 
     // Legend labels reflect current mode
     document.getElementById("legLo").textContent = mode.hint[0];
