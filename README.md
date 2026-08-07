@@ -3,6 +3,9 @@
 A single-file field-prospecting heat map. No build step, no accounts, no API keys.
 Open `index.html` in any browser (works on your phone too).
 
+> **Working on this project?** Read [HANDOFF.md](HANDOFF.md) first — architecture,
+> known landmines, and what's unfinished.
+
 ## What it does
 
 - Plots prospects on a map with a **heat layer** on top.
