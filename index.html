@@ -277,14 +277,37 @@
   }
 
   const BRIEFINGS = window.OPENING_BRIEFINGS || {};
+  const BRIEF_ALIASES = window.BRIEFING_ALIASES || {};
+
+  // Same normalization as build_briefings.py, so the alias keys line up.
+  function normAddr(s) {
+    return (s || "").toLowerCase()
+      .replace(/[^a-z0-9 ]+/g, " ")
+      .replace(/\b(street|st|avenue|ave|road|rd|drive|dr|lane|ln|place|pl|boulevard|blvd|suite|ste|unit|north|south|east|west|n|s|e|w)\b/g, " ")
+      .replace(/\s+/g, " ").trim();
+  }
+
+  // Resolve a briefing for a venue. A venue's SLA id changes when its license
+  // goes pending -> active, so fall back to matching on name+address, then on
+  // an unambiguous address alone (flagged, since the licensee name differs).
+  function findBriefing(p) {
+    const direct = BRIEFINGS[String(p.id)];
+    if (direct) return { b: direct, exact: true };
+    const street = normAddr(p.street);
+    const a = BRIEF_ALIASES[normAddr(p.name) + "|" + street] || BRIEF_ALIASES[street];
+    if (a && BRIEFINGS[a.id]) return { b: BRIEFINGS[a.id], exact: a.exact };
+    return null;
+  }
 
   // Build the researched-briefing block for an opening popup (or a placeholder).
-  function briefingHtml(id) {
-    const b = BRIEFINGS[id];
-    if (!b) return `<div class="brief brief-empty">🔎 No briefing yet — no public info found for this pre-opening spot.</div>`;
+  function briefingHtml(p) {
+    const hit = findBriefing(p);
+    if (!hit) return `<div class="brief brief-empty">🔎 No briefing yet — no public info found for this pre-opening spot.</div>`;
+    const b = hit.b;
     const conf = b.confidence != null ? b.confidence : "?";
     const spec = b.speculative ? ` <span class="brief-spec">(informed guess)</span>` : "";
-    let h = `<div class="brief"><div class="brief-h">🔎 Briefing · confidence ${conf}/10${spec}</div>`;
+    const inherited = hit.exact ? "" : ` <span class="brief-spec">(matched by address — licensee name has changed)</span>`;
+    let h = `<div class="brief"><div class="brief-h">🔎 Briefing · confidence ${conf}/10${spec}${inherited}</div>`;
     if (b.summary) h += `<div class="brief-sum">${b.summary}</div>`;
     if (b.style) h += `<div><b>Style:</b> ${b.style}</div>`;
     if (b.menu) h += `<div><b>Menu:</b> ${b.menu}</div>`;
@@ -445,7 +468,7 @@
         const popupHtml =
           `<div class="pv" data-id="${String(p.id)}">` +
           `<b>${p.name}</b><br>` +
-          (p.opening ? `<span style="color:#c94a1e;font-weight:600">🆕 ${openingLabel(p.opening)}</span><br><span class="p-row">${openingDetail(p.opening)}</span><br>` + briefingHtml(String(p.id)) : "") +
+          (p.opening ? `<span style="color:#c94a1e;font-weight:600">🆕 ${openingLabel(p.opening)}</span><br><span class="p-row">${openingDetail(p.opening)}</span><br>` + briefingHtml(p) : "") +
           `<span class="p-cat">${p.category}${cuisineBit}</span><br>` +
           streetBit +
           hoursBit +

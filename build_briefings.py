@@ -5,10 +5,11 @@ Adds `cwSellers` to each briefing = the Chefs' Warehouse products projected to b
 best-sellers INTO that restaurant (derived from its cuisine/style), replacing the
 old menu-based "bestSellers". Rebuild: python3 build_briefings.py
 """
-import json, glob, os
+import json, glob, os, re
 
 SRC_DIR = ".briefsrc"
 OUT = "briefings.js"
+VENUES = os.path.join(SRC_DIR, "_venues.json")   # persistent id -> {name, street}
 
 # CW product baskets by cuisine bucket (ordered by pitch priority).
 PROD = {
@@ -83,9 +84,11 @@ def cw_sellers(b):
                 out.append(p)
     return out[:6]
 
-# Merge all source files.
+# Merge all source files (skip the _venues registry, which isn't a briefing file).
 briefings = {}
 for f in sorted(glob.glob(os.path.join(SRC_DIR, "*.json"))):
+    if os.path.basename(f).startswith("_"):
+        continue
     with open(f) as fh:
         briefings.update(json.load(fh))
 
@@ -93,11 +96,62 @@ for bid, b in briefings.items():
     b.pop("bestSellers", None)          # drop old menu best-sellers
     b["cwSellers"] = cw_sellers(b)      # add CW products to sell them
 
+
+# ---- Alias map -------------------------------------------------------------
+# A venue's SLA id CHANGES when it graduates from a pending license to an active
+# one (sla-NA-... -> sla-active-...), which would orphan its researched briefing.
+# So we also key briefings by normalized address, and let the page fall back to
+# that when the id misses. `_venues.json` is a persistent id -> name/street
+# registry, refreshed from openings.js on every build so ids that have already
+# rolled off the feed keep resolving.
+
+def norm(s):
+    s = (s or "").lower()
+    s = re.sub(r"[^a-z0-9 ]+", " ", s)
+    s = re.sub(r"\b(street|st|avenue|ave|road|rd|drive|dr|lane|ln|place|pl|"
+               r"boulevard|blvd|suite|ste|unit|north|south|east|west|n|s|e|w)\b", " ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+venues = {}
+if os.path.exists(VENUES):
+    with open(VENUES) as fh:
+        venues = json.load(fh)
+
+# Refresh the registry from the current openings feed (union — never drop ids).
+if os.path.exists("openings.js"):
+    txt = open("openings.js").read()
+    for o in json.loads(txt[txt.index("["):txt.rindex("]") + 1]):
+        venues[o["id"]] = {"name": o["name"], "street": o["street"]}
+    with open(VENUES, "w") as fh:
+        json.dump(venues, fh, ensure_ascii=False, indent=0, sort_keys=True)
+
+# street -> briefed ids at that street, to keep street-only matches unambiguous.
+by_street = {}
+for bid in briefings:
+    v = venues.get(bid)
+    if v:
+        by_street.setdefault(norm(v["street"]), []).append(bid)
+
+aliases = {}
+for bid in briefings:
+    v = venues.get(bid)
+    if not v:
+        continue
+    aliases[norm(v["name"]) + "|" + norm(v["street"])] = {"id": bid, "exact": True}
+for street, ids in by_street.items():
+    if len(ids) == 1:                    # only alias an address that's unambiguous
+        aliases.setdefault(street, {"id": ids[0], "exact": False})
+
 with open(OUT, "w") as f:
     f.write("// Researched opening briefings, keyed by opening id. Built by build_briefings.py.\n")
     f.write("// cwSellers = CW products projected to sell into that venue (from its cuisine).\n")
     f.write("window.OPENING_BRIEFINGS = ")
     json.dump(briefings, f, ensure_ascii=False)
     f.write(";\n")
+    f.write("// Fallback lookup: normalized 'name|street' (and unambiguous street alone)\n")
+    f.write("// -> briefing id, so a briefing survives the SLA pending->active id change.\n")
+    f.write("window.BRIEFING_ALIASES = ")
+    json.dump(aliases, f, ensure_ascii=False)
+    f.write(";\n")
 
-print(f"wrote {len(briefings)} briefings -> {OUT}")
+print(f"wrote {len(briefings)} briefings, {len(aliases)} aliases -> {OUT}")

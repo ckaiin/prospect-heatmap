@@ -1,0 +1,630 @@
+{
+"sla-NA-0240-24-146858": {
+"name": "Kathleen's Tea Room",
+"street": "979 Main St, Peekskill"
+},
+"sla-NA-0240-25-120155": {
+"name": "Kiko Ramen Bar",
+"street": "2500 Central Park Ave, Yonkers"
+},
+"sla-NA-0240-25-120255": {
+"name": "Chipotle Mexican Grill #5099",
+"street": "1201 Nepperhan Ave, Yonkers"
+},
+"sla-NA-0240-25-124805": {
+"name": "Valhalla Pizza Station",
+"street": "18 Broadway, Valhalla"
+},
+"sla-NA-0240-25-138305": {
+"name": "Climbing Wolf Kitchen Coffee & Beer",
+"street": "25 Main St, Tuckahoe"
+},
+"sla-NA-0240-26-106843": {
+"name": "Nick's Grill",
+"street": "359 S Broadway, Yonkers"
+},
+"sla-NA-0240-26-108937": {
+"name": "Lucky D Thai 13",
+"street": "49 N Riverside Ave, Croton On Hudson"
+},
+"sla-NA-0240-26-109936": {
+"name": "Sabrosura Peruana S.H.",
+"street": "62 Beekman Ave, Sleepy Hollow"
+},
+"sla-NA-0240-26-110090": {
+"name": "Mistura Peruvian Flavours",
+"street": "148 Bedford Rd, Pleasantville"
+},
+"sla-NA-0240-26-111757": {
+"name": "Chipotle Mexican Grill #3063",
+"street": "405 Tarrytown Rd, White Plains"
+},
+"sla-NA-0240-26-111766": {
+"name": "Chipotle Mexican Grill #3064",
+"street": "798 Pelham Parkway, Pelham"
+},
+"sla-NA-0240-26-113480": {
+"name": "Rinconcito Chapin Latino",
+"street": "92 Purdy Ave, Port Chester"
+},
+"sla-NA-0240-26-113718": {
+"name": "Jane Craft Food",
+"street": "6 N Pearl St, Port Chester"
+},
+"sla-NA-0240-26-114151": {
+"name": "Nonna's Pizza",
+"street": "1843 Main St, Peekskill"
+},
+"sla-NA-0240-26-114527": {
+"name": "Sikkim Hut The Taste Of Himalaya",
+"street": "677 Commerce St, Thornwood"
+},
+"sla-NA-0240-26-117251": {
+"name": "Pizza & Pasta Place",
+"street": "20 Cedar St, Dobbs Ferry"
+},
+"sla-NA-0240-26-119192": {
+"name": "Little Cabin Sandwich Shop",
+"street": "3787 Crompond Rd, Cortlandt Manor"
+},
+"sla-NA-0240-26-119434": {
+"name": "Hacienda El Patio",
+"street": "107 Main St, Ossining"
+},
+"sla-NA-0240-26-119755": {
+"name": "Shake Shack",
+"street": "176 N Bedford Rd, Mount Kisco"
+},
+"sla-NA-0240-26-121460": {
+"name": "True North 57",
+"street": "57 N Broadway, Tarrytown"
+},
+"sla-NA-0340-25-123299": {
+"name": "Lost Restaurant & Bar",
+"street": "151 Marbledale Rd, Tuckahoe"
+},
+"sla-NA-0340-25-124313": {
+"name": "Iguanarita",
+"street": "39 Main St, Tarrytown"
+},
+"sla-NA-0340-25-129807": {
+"name": "Eatarry",
+"street": "25 Main St, Tarrytown"
+},
+"sla-NA-0340-25-130416": {
+"name": "Don Jose Mexican Restaurant",
+"street": "2141 Central Park Ave, Yonkers"
+},
+"sla-NA-0340-25-132916": {
+"name": "Webster Sport Bar",
+"street": "326 Webster Ave, New Rochelle"
+},
+"sla-NA-0340-25-133840": {
+"name": "Noya Restaurant",
+"street": "2150 Central Park Ave, Yonkers"
+},
+"sla-NA-0340-25-135887": {
+"name": "Riko's Pizza",
+"street": "124 Chatsworth Ave, Larchmont"
+},
+"sla-NA-0340-25-138609": {
+"name": "Love Hibachi Restaurant",
+"street": "80 Route 6, Baldwin Place"
+},
+"sla-NA-0340-25-138751": {
+"name": "Spaccarelli's By Zuppa",
+"street": "238 Saw Mill River Rd, Millwood"
+},
+"sla-NA-0340-25-138965": {
+"name": "Hana Grill and Sushi",
+"street": "365 Central Park Ave, Scarsdale"
+},
+"sla-NA-0340-25-139413": {
+"name": "OLIBAR",
+"street": "583 Main St, New Rochelle"
+},
+"sla-NA-0340-26-103256": {
+"name": "Main Street Chinese",
+"street": "36 E Main St, Mount Kisco"
+},
+"sla-NA-0340-26-103274": {
+"name": "Tosst and Presst",
+"street": "5 7 E Prospect Ave, Mount Vernon"
+},
+"sla-NA-0340-26-103511": {
+"name": "TRYST",
+"street": "95 Gramatan Ave, Mount Vernon"
+},
+"sla-NA-0340-26-104687": {
+"name": "Putnam Valley Grille",
+"street": "1220 Oregon Rd, Cortlandt Manor"
+},
+"sla-NA-0340-26-104757": {
+"name": "Mexico En La Piel Restaurant",
+"street": "708 Central Park Ave, Yonkers"
+},
+"sla-NA-0340-26-104941": {
+"name": "La Botte Restaurant",
+"street": "4 Martine Ave, White Plains"
+},
+"sla-NA-0340-26-104990": {
+"name": "Clairmont Diner",
+"street": "929 Yonkers Ave, Yonkers"
+},
+"sla-NA-0340-26-105256": {
+"name": "Hudson Fusion Rest",
+"street": "55 Hudson Ave, Peekskill"
+},
+"sla-NA-0340-26-106601": {
+"name": "NOMI SUSHI",
+"street": "30 Garth Rd, Scarsdale"
+},
+"sla-NA-0340-26-107774": {
+"name": "Pelham Rails",
+"street": "65 1st St, Pelham"
+},
+"sla-NA-0340-26-108091": {
+"name": "The Urban Hamlet",
+"street": "124 Pondfield Rd, Bronxville"
+},
+"sla-NA-0340-26-108441": {
+"name": "Pizza Girls Ny",
+"street": "38 40 E Main St, Mount Kisco"
+},
+"sla-NA-0340-26-108958": {
+"name": "Drunken Taco Bar",
+"street": "91 Mamaroneck Ave, White Plains"
+},
+"sla-NA-0340-26-109254": {
+"name": "Sapore Di Roma",
+"street": "211 Main St, New Rochelle"
+},
+"sla-NA-0340-26-110799": {
+"name": "Wild Ginger",
+"street": "10 Park Pl, Bronxville"
+},
+"sla-NA-0340-26-111042": {
+"name": "Pura Vida New Rochelle",
+"street": "615 Main St, New Rochelle"
+},
+"sla-NA-0340-26-111519": {
+"name": "El Parraltio Restaurant",
+"street": "143 Westchester Ave, Port Chester"
+},
+"sla-NA-0340-26-111532": {
+"name": "Coffee Shop Cafe & Bar",
+"street": "28 Wells Ave, Yonkers"
+},
+"sla-NA-0340-26-111988": {
+"name": "Capretta",
+"street": "57 Spencer Pl, Scarsdale"
+},
+"sla-NA-0340-26-112654": {
+"name": "Andino",
+"street": "531 N Main St, Port Chester"
+},
+"sla-NA-0340-26-112661": {
+"name": "Makondo Legacy Group",
+"street": "126 N Main St, Port Chester"
+},
+"sla-NA-0340-26-113594": {
+"name": "Amore Duo",
+"street": "2 Union St, Briarcliff Manor"
+},
+"sla-NA-0340-26-113652": {
+"name": "Azul Bar & Grill",
+"street": "8 S Kensico Ave, White Plains"
+},
+"sla-NA-0340-26-113847": {
+"name": "Las Gaviotas Mexican Restaurant",
+"street": "19 Gramatan Ave, Mount Vernon"
+},
+"sla-NA-0340-26-114105": {
+"name": "Hillside Provisions",
+"street": "3 Westchester Park Dr, White Plains"
+},
+"sla-NA-0340-26-115355": {
+"name": "Urban Bites",
+"street": "435 N Main St, Port Chester"
+},
+"sla-NA-0340-26-117147": {
+"name": "Aura Kitchen",
+"street": "638-640 McLean Avenue, Yonkers"
+},
+"sla-NA-0340-26-118092": {
+"name": "JUNGLE RESTAURANT",
+"street": "7-9 W Grand St, Mount Vernon"
+},
+"sla-NA-0340-26-118102": {
+"name": "Keane'S Bar And Restaurant",
+"street": "380 Downing Dr, Yorktown Heights"
+},
+"sla-NA-0340-26-118785": {
+"name": "Rauy Mak Mak",
+"street": "750 Central Park Ave, Scarsdale"
+},
+"sla-NA-0340-26-119613": {
+"name": "BXV Steak",
+"street": "131 Parkway Rd, Bronxville"
+},
+"sla-NA-0340-26-120547": {
+"name": "Windermere Tea Room and Bakery",
+"street": "222 E Main St, Mount Kisco"
+},
+"sla-NA-0340-26-121244": {
+"name": "Fat Stu's All American Burger",
+"street": "157 Mamaroneck Ave, Mamaroneck"
+},
+"sla-NA-0340-26-121339": {
+"name": "Clairmont Diner",
+"street": "929 Yonkers Ave, Yonkers"
+},
+"sla-NA-0340-26-206645": {
+"name": "ugly dumpling",
+"street": "999 Central Park Ave Spc 10, Scarsdale"
+},
+"sla-NA-0341-26-112511": {
+"name": "Castaways Hospitality and Design",
+"street": "425 Davenport Ave, New Rochelle"
+},
+"sla-NA-0346-26-100681": {
+"name": "Compass Group USA",
+"street": "2900 Purchase St, Purchase"
+},
+"sla-active-0240-22-100095": {
+"name": "Shake Shack New York",
+"street": "8000 Mall Walk Space 2090, Yonkers"
+},
+"sla-active-0240-22-100847": {
+"name": "Jemas Green Mountain Group",
+"street": "179 Martine Ave, White Plains"
+},
+"sla-active-0240-22-101751": {
+"name": "Elia Taverna Bronxville",
+"street": "502 New Rochelle Rd, Bronxville"
+},
+"sla-active-0240-22-102743": {
+"name": "Bobby & Tiffany'S",
+"street": "7 Old Rd, Elmsford"
+},
+"sla-active-0240-26-145008": {
+"name": "Tomo Sushi Yankers 642",
+"street": "642 Mclean Ave, Yonkers"
+},
+"sla-active-0240-26-145179": {
+"name": "385 Jia L.L.C.",
+"street": "385 Kear St, Yorktown Heights"
+},
+"sla-active-0240-26-145621": {
+"name": "Erawan Royal Thai",
+"street": "295 Halstead Ave, Harrison"
+},
+"sla-active-0240-26-146443": {
+"name": "Leiva and Sons",
+"street": "24 Woodsbridge Rd, Katonah"
+},
+"sla-active-0240-26-146496": {
+"name": "Meze Fine Cuisine",
+"street": "409 & 411 Mount Pleasant Ave, Mamaroneck"
+},
+"sla-active-0240-26-146647": {
+"name": "United 1217",
+"street": "1217 Nepperhan Ave, Yonkers"
+},
+"sla-active-0240-26-147373": {
+"name": "Minsoo Enterprises",
+"street": "1086 Wilmot Rd, Scarsdale"
+},
+"sla-active-0240-26-148752": {
+"name": "La Casa Del Sazon Restaurant",
+"street": "230 N Washington St, Sleepy Hollow"
+},
+"sla-active-0240-26-150090": {
+"name": "Vietnam Central TP",
+"street": "694 Central Park Ave, Scarsdale"
+},
+"sla-active-0340-22-102845": {
+"name": "Lakonia Restaurant",
+"street": "720 North Broadway, White Plains"
+},
+"sla-active-0340-22-103012": {
+"name": "Leo Chuliya",
+"street": "20 North Central Ave, Hartsdale"
+},
+"sla-active-0340-22-103137": {
+"name": "Old Salem Grill",
+"street": "190 June Rd, North Salem"
+},
+"sla-active-0340-22-103147": {
+"name": "Fat Sals Bar & Grill",
+"street": "265 Tate Ave, Buchanan"
+},
+"sla-active-0340-22-103549": {
+"name": "Capri Pizza & Pasta Company Of Tarrytown",
+"street": "350 S Broadway, Tarrytown"
+},
+"sla-active-0340-22-103922": {
+"name": "Diana Bedford",
+"street": "454 Old Post Road, Bedford"
+},
+"sla-active-0340-22-104864": {
+"name": "Gaf",
+"street": "1172 Knollwood Rd, White Plains"
+},
+"sla-active-0340-22-104980": {
+"name": "Blasi'S Pizzeria & Rest",
+"street": "23 Putnam Avenue, Port Chester"
+},
+"sla-active-0340-22-105610": {
+"name": "Rcsh Operations",
+"street": "670 White Plains Road, Tarrytown"
+},
+"sla-active-0340-22-105640": {
+"name": "Half Moon River Club Llc, The",
+"street": "1 High Street, Dobbs Ferry"
+},
+"sla-active-0340-22-106230": {
+"name": "Main Street Steakery",
+"street": "700 Main St, New Rochelle"
+},
+"sla-active-0340-22-106374": {
+"name": "Rayston Restaurant",
+"street": "317 Boston Post Road, Port Chester"
+},
+"sla-active-0340-22-106755": {
+"name": "Palmco Restaurant",
+"street": "10 12 Palmer Avenue, Bronxville"
+},
+"sla-active-0340-22-107123": {
+"name": "Blue Hill At Stone Barns, Llc & Stone Barns Restoration",
+"street": "630 Bedford Rd, Tarrytown"
+},
+"sla-active-0340-22-107336": {
+"name": "Wave Bar Lounge & Restaurant Inc, The",
+"street": "41 Gramatan Ave, Mount Vernon"
+},
+"sla-active-0340-22-107509": {
+"name": "Wegmans Food Markets",
+"street": "106 Corporate Park Dr, Harrison"
+},
+"sla-active-0340-22-107625": {
+"name": "1959 Foods",
+"street": "22 Main St, Tarrytown"
+},
+"sla-active-0340-22-107905": {
+"name": "El Rinconcito Of Port Chester",
+"street": "20 Broad St, Port Chester"
+},
+"sla-active-0340-22-108471": {
+"name": "Jazz On Main",
+"street": "37 S Moger Ave, Mount Kisco"
+},
+"sla-active-0340-22-108654": {
+"name": "Pappous Greek Kitchen",
+"street": "1983 Commerce St, Yorktown Heights"
+},
+"sla-active-0340-22-108794": {
+"name": "Pizza Partners Rh",
+"street": "211 Market St  Unit 1980, Yonkers"
+},
+"sla-active-0340-22-109262": {
+"name": "Silvana Restaurant",
+"street": "10 Hamilton St, Dobbs Ferry"
+},
+"sla-active-0340-22-109323": {
+"name": "Emmas Restaurant Group",
+"street": "265 Mamaroneck Ave, Mamaroneck"
+},
+"sla-active-0340-22-109978": {
+"name": "75 Cooley St Restaurant Holding Group",
+"street": "75 Cooley St, Pleasantville"
+},
+"sla-active-0340-22-109984": {
+"name": "Historic",
+"street": "673 Croton Heights Rd, Yorktown Heights"
+},
+"sla-active-0340-22-110215": {
+"name": "Homefield4229",
+"street": "1 Kent Pl, Armonk"
+},
+"sla-active-0340-22-110334": {
+"name": "Cng Restaurant",
+"street": "77 Quaker Ridge Rd, New Rochelle"
+},
+"sla-active-0340-22-110345": {
+"name": "Augustine'S Salumeria",
+"street": "213 215 Halstead Ave, Mamaroneck"
+},
+"sla-active-0340-22-111770": {
+"name": "202 Diner",
+"street": "3825 Crompound Rd, Yorktown"
+},
+"sla-active-0340-22-111791": {
+"name": "Brothers Fish & Chips Restaurant",
+"street": "172 N Highland Ave, Ossining"
+},
+"sla-active-0340-22-112817": {
+"name": "Taco Project",
+"street": "18 Main St, Tarrytown"
+},
+"sla-active-0340-22-112933": {
+"name": "La Chinita Poblana Restaurant",
+"street": "61 Main St, Irvington"
+},
+"sla-active-0340-22-113256": {
+"name": "Lessing'S",
+"street": "330 Boston Post Rd, Rye"
+},
+"sla-active-0340-22-113399": {
+"name": "La Catena Ardsley Ristorante",
+"street": "871 Saw Mill River Rd, Ardsley"
+},
+"sla-active-0340-22-113640": {
+"name": "Valencia And Daughters",
+"street": "124 E Post Rd, White Plains"
+},
+"sla-active-0340-22-113756": {
+"name": "Yard House Usa",
+"street": "237 Market St, Yonkers"
+},
+"sla-active-0340-22-113922": {
+"name": "Bedford Truck",
+"street": "391 Old Post Rd, Bedford"
+},
+"sla-active-0340-22-113932": {
+"name": "Frankie & Fanuccis Mamaroneck",
+"street": "301 Mamaroneck Ave, Mamaroneck"
+},
+"sla-active-0340-22-114349": {
+"name": "Eastchester Fish Gourmet",
+"street": "837 White Plains Rd, Scarsdale"
+},
+"sla-active-0340-22-114585": {
+"name": "Oishii Bistro",
+"street": "69 S Moger Ave, Mount Kisco"
+},
+"sla-active-0340-22-114588": {
+"name": "Kosova",
+"street": "386 Main St, Armonk"
+},
+"sla-active-0340-22-114595": {
+"name": "Wasabi & Ginger",
+"street": "139 Larchmont Ave, Larchmont"
+},
+"sla-active-0340-22-114597": {
+"name": "Mesa Maya",
+"street": "837-D Midland Ave, Yonkers"
+},
+"sla-active-0340-22-114599": {
+"name": "Maria Fata",
+"street": "11 Huguenot St, New Rochelle"
+},
+"sla-active-0340-22-115386": {
+"name": "Irvington Thai",
+"street": "4 W Main St, Irvington"
+},
+"sla-active-0340-22-115435": {
+"name": "Unique Affairs At The Davenport Club",
+"street": "400 Davenport Ave, New Rochelle"
+},
+"sla-active-0340-23-130705": {
+"name": "Pj Petrillo Enterprises",
+"street": "85 Route 6  Po Box 674, Baldwin Place"
+},
+"sla-active-0340-23-133621": {
+"name": "Vita La Rosa",
+"street": "12 Russell Ave, New Rochelle"
+},
+"sla-active-0340-23-137953": {
+"name": "Taco Project Of Pleasantville",
+"street": "465 Bedford Rd, Pleasantville"
+},
+"sla-active-0340-24-100009": {
+"name": "2011 Albany Post Road",
+"street": "2011 Albany Post Rd, Croton On Hudson"
+},
+"sla-active-0340-24-104978": {
+"name": "Taco District &",
+"street": "20 N Division St, Peekskill"
+},
+"sla-active-0340-24-121519": {
+"name": "Las Palmas Restaurant & Grill",
+"street": "17 E Main St, Mount Kisco"
+},
+"sla-active-0340-24-121674": {
+"name": "BBE Restaurant Group",
+"street": "156 Fifth Ave, Pelham"
+},
+"sla-active-0340-24-121998": {
+"name": "Alessias Trattoria",
+"street": "551 Halstead Ave, Mamaroneck"
+},
+"sla-active-0340-24-122872": {
+"name": "Our Place Hospitality",
+"street": "334 Underhill Ave, Yorktown Heights"
+},
+"sla-active-0340-24-124087": {
+"name": "Blue Water Tavern",
+"street": "1 Bridge St, Irvington"
+},
+"sla-active-0340-24-124352": {
+"name": "American Brands Restaurant Group",
+"street": "64 Main St, Tuckahoe"
+},
+"sla-active-0340-24-130577": {
+"name": "Peters Steakhouse",
+"street": "1 Mill Rd, Eastchester"
+},
+"sla-active-0340-26-133050": {
+"name": "Town House KD-NR",
+"street": "559 Main St, New Rochelle"
+},
+"sla-active-0340-26-145205": {
+"name": "The Pleasantville Tavern",
+"street": "446 Bedford Rd, Pleasantville"
+},
+"sla-active-0340-26-145277": {
+"name": "Lobos Lane",
+"street": "217 Wolfs Ln, Pelham"
+},
+"sla-active-0340-26-146150": {
+"name": "Hubbard's Cupboard",
+"street": "7 Willow St, Port Chester"
+},
+"sla-active-0340-26-146860": {
+"name": "The Andaluz Tapas & Wine",
+"street": "519 Main St, New Rochelle"
+},
+"sla-active-0340-26-146885": {
+"name": "Tepes Kitchen Jr.",
+"street": "120 E Post Rd, White Plains"
+},
+"sla-active-0340-26-146989": {
+"name": "Rosie Bella's Restaurant",
+"street": "1 Southfield Ave, Dobbs Ferry"
+},
+"sla-active-0340-26-147162": {
+"name": "MGP Fish",
+"street": "2098 2100 Boston Post Rd, Larchmont"
+},
+"sla-active-0340-26-147523": {
+"name": "VTR Rye Brook",
+"street": "1200 King St, Rye Brook"
+},
+"sla-active-0340-26-147560": {
+"name": "Bronxville Pie Company",
+"street": "102-B Kraft Ave, Bronxville"
+},
+"sla-active-0340-26-148021": {
+"name": "Casa Latina Bar & Grill",
+"street": "185 Main St, Ossining"
+},
+"sla-active-0340-26-148273": {
+"name": "Famaccio Brothers",
+"street": "919 Central Park Ave, Scarsdale"
+},
+"sla-active-0340-26-150067": {
+"name": "Peaberry Cafe Bar & Restaurant",
+"street": "1550 Central Park Ave, Yonkers"
+},
+"sla-active-0340-26-150203": {
+"name": "27 White Plains",
+"street": "27 Mamaroneck Ave, White Plains"
+},
+"sla-active-0340-26-150347": {
+"name": "Hudson Fusion Rest",
+"street": "55 Hudson Ave, Peekskill"
+},
+"sla-active-0340-26-150354": {
+"name": "30 Garth Enterprises",
+"street": "30 Garth Rd, Scarsdale"
+},
+"sla-active-0340-26-150419": {
+"name": "Spaccarelli's By Zuppa",
+"street": "238 Saw Mill River Rd, Millwood"
+},
+"sla-active-0346-26-150345": {
+"name": "Compass Group USA",
+"street": "2900 Purchase St, Purchase"
+}
+}

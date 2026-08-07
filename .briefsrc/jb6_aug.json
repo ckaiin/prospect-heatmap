@@ -1,0 +1,57 @@
+{
+  "sla-active-0340-22-111770": {
+    "confidence": 8,
+    "summary": "202 Diner at 3825 Crompond Rd (Cortlandt/Yorktown line) is an established, long-running Westchester diner — not a new opening. It carries 117+ Yelp reviews and 146 photos, and is listed on DoorDash, Grubhub, Uber Eats, Postmates and Seamless, so the recent SLA activity is a license renewal rather than a debut. Open ~9am–8:30pm weekdays, 8am–8:30pm Saturday, 8:15am–6:30pm Sunday.",
+    "style": "Classic American roadside diner — all-day breakfast, griddle, deli-style sandwiches, and a broad comfort-food menu with heavy off-premise delivery volume.",
+    "menu": "Deluxe classic 8oz cheeseburger, grilled chicken quesadilla, all-day breakfast (eggs, pancakes, omelets), club sandwiches, wraps, soups and platters.",
+    "angle": "Diner economics run on burger patties, breakfast proteins and butter. Lead with Allen Brothers ground beef and steak for the burger/platter side of the menu, Grand Reserve butter for the griddle, and specialty cheeses to upgrade the melts — a spec-up story on the two or three items they sell most, not a broadline swap. High delivery volume means consistent, predictable weekly ordering.",
+    "speculative": false,
+    "sources": [
+      {
+        "label": "Yelp — 202 Diner (117 reviews, 146 photos)",
+        "url": "https://www.yelp.com/biz/202-diner-cortlandt-3",
+        "cred": 8
+      },
+      {
+        "label": "Grubhub — 202 Diner menu",
+        "url": "https://www.grubhub.com/restaurant/202-diner-3825-crompond-rd-cortlandt/2690847",
+        "cred": 7
+      },
+      {
+        "label": "Uber Eats — 202 Diner menu & hours",
+        "url": "https://www.ubereats.com/store/202-diner/Ybknmi_NUtCRBgooYUmGew",
+        "cred": 7
+      }
+    ]
+  },
+  "sla-active-0340-22-115435": {
+    "confidence": 7,
+    "summary": "400 Davenport Ave, New Rochelle is the waterfront Davenport Mansion — a renovated 19th-century beachfront mansion running as a single-event-per-day wedding and catering hall (The Knot Best of Weddings, multiple years, plus Hall of Fame). 'Unique Affairs At The Davenport Club' is the licensed operating entity behind the catering at that address; the licensee name does not appear in the venue's public marketing, so the entity-to-venue link is inferred from the shared address. Note the adjacent Davenport Club beach/social club shares the same waterfront campus.",
+    "style": "High-end banquet and event catering — weddings, bar/bat mitzvahs, christenings, corporate and holiday events. Plated multi-course service at scale, single event per day.",
+    "menu": "Wedding and event packages: cocktail-hour stations, passed hors d'oeuvres, plated entrees (beef, seafood, poultry), carving stations, and dessert/pastry service.",
+    "angle": "This is the multi-unit-style goldmine profile from the CW playbook — banquet volume with per-plate pricing that absorbs premium center-of-plate. Lead with Allen Brothers beef for the plated entree and carving station, specialty seafood for cocktail hour, and Valrhona/pastry program for the dessert course. Book the tasting-menu conversation ahead of the fall/winter wedding season when the next season's packages get priced.",
+    "speculative": true,
+    "sources": [
+      {
+        "label": "The Davenport Mansion — official site",
+        "url": "https://www.davenportmansion.com/",
+        "cred": 9
+      },
+      {
+        "label": "Yelp — The Davenport Mansion, 400 Davenport Ave (Caterers)",
+        "url": "https://www.yelp.com/biz/the-davenport-mansion-new-rochelle",
+        "cred": 7
+      },
+      {
+        "label": "New Rochelle Chamber of Commerce listing",
+        "url": "https://business.newrochellechamber.org/list/member/the-davenport-mansion-285",
+        "cred": 7
+      },
+      {
+        "label": "Cvent venue profile — The Davenport Mansion",
+        "url": "https://www.cvent.com/venues/new-rochelle/special-event-venue/the-davenport-mansion/venue-261b834e-f8d0-4fac-a181-a596e458c4e4",
+        "cred": 6
+      }
+    ]
+  }
+}
