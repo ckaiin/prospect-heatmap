@@ -60,6 +60,7 @@ node --check /tmp/app.js
 | `sbconfig.js` | Supabase URL + anon key. **Placeholders = backend off** | hand-edited |
 | `test_sync.js` | Unit tests for the merge | hand-written |
 | `restaurants.js` | 731 real Westchester venues | `build_data.py` ← `overpass_raw.json` |
+| `curated.js` | 96 hand-researched prospects (Westchester + Fairfield CT): contacts, human 1-5 ratings, why-it-fits | generated 2026-08-31 from "CT-Westchester Prospecting List.xlsx" (in ~/Documents) |
 | `openings.js` | 137 real new openings (NY SLA) | `openings_feed.py` |
 | `briefings.js` | Researched briefings + alias map | `build_briefings.py` ← `.briefsrc/*.json` |
 | `fit.py` | Chefs' Warehouse fit heuristic | shared by both builders |
@@ -85,9 +86,18 @@ NY SLA API ──openings_feed.py───────► openings.js ───�
 .briefsrc/*.json ──build_briefings.py─► briefings.js ┘
 ```
 
-`PROSPECTS` = restaurants + openings, merged at load. Tracker state
+`PROSPECTS` = restaurants + openings, merged at load, then the **curated overlay**
+(`curated.js`, optional) is applied: an entry with an `osmId` upgrades that OSM
+venue in place (human rating replaces the fit.py score; phone/contact/why-it-fits
+attach; the OSM id — and therefore tracker state — survives), and an entry
+without one is appended as its own pin (OSM under-maps hotel restaurants,
+bakeries, and caterers — 76 of the 96 were missing). Curated pins get a blue
+ring, a 📋 popup block, and a "Researched list only" toggle. Tracker state
 (status/notes) is overlaid on top from localStorage, then from Supabase if
-configured.
+configured. Note the fit heat lens is now bimodal by source: curated venues
+score on a human 1-5 mapped to 96/85/70/55, everything else on the fit.py
+heuristic. If the spreadsheet is re-scored, regenerate `curated.js` rather than
+hand-editing it.
 
 **Real vs. simulated** — be careful not to present simulated data as real:
 

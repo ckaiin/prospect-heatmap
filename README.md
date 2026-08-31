@@ -80,3 +80,19 @@ Replace `makeMockData()` with your real list. Each prospect just needs:
 When you're ready, the cleanest path is to keep your leads in a spreadsheet, export CSV,
 and load it here — ping me and I'll wire up CSV import + address→lat/lng geocoding so you
 can drop in a list without hand-coding coordinates.
+
+## The researched overlay (curated.js)
+
+That "going live" path now exists: `curated.js` carries the **96 hand-researched
+prospects** from `~/Documents/CT-Westchester Prospecting List.xlsx` — verified
+open, geocoded, with phone, contact, segment, a human 1–5 fit rating, and a
+one-line "why it fits". At load they either upgrade the matching OSM venue in
+place (20 do) or appear as their own pins (76 — venues OSM was missing, mostly
+hotel restaurants, bakeries, caterers). Blue-ringed pins are researched; the
+**📋 Researched list only** toggle filters down to them, and their popups show
+the contact intel. The overlay also extends coverage into **Fairfield County,
+CT** (Greenwich → Fairfield), so pan east.
+
+If the spreadsheet changes, regenerate rather than hand-edit — the generator
+lives with the spreadsheet workflow (ask Claude to "rebuild curated.js from the
+prospecting list").
